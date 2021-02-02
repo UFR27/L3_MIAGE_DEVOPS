@@ -16,12 +16,12 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum-config-manager --enable remi-php72
 
 # Install PHP 7.2 and extensions
-#RUN yum -y install php-fpm php-devel php-cli php-opcache php-gd \
-#	php-mbstring php-mcrypt php-mysql php-oci8 php-pdo php-pear php-xml php-xmlrpc \
-#	php-intl php-soap php-pgsql php-pecl-zip php-pecl-xdebug php-pecl-ssh2
+# RUN yum -y install php-fpm php-devel php-cli php-opcache php-gd \
+#     php-mbstring php-mcrypt php-mysql php-oci8 php-pdo php-pear php-xml php-xmlrpc \
+#     php-intl php-soap php-pgsql php-pecl-zip php-pecl-xdebug php-pecl-ssh2
 
 # Install PHP 7.2 and extensions
-RUN yum -y install php-fpm php-cli php-mysql
+RUN yum -y install php-fpm php-cli php-mysql php-xml
 
 #copy conf and basic web pages
 COPY ./conf/nginx.conf /etc/nginx/
@@ -38,7 +38,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/error.log
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Startup Script to run PHP-FPM and Nginx
 COPY ./script/start.sh /tmp/
