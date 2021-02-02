@@ -16,12 +16,12 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
     yum-config-manager --enable remi-php72
 
 # Install PHP 7.2 and extensions
-#RUN yum -y install php-fpm php-devel php-cli php-opcache php-gd \
+RUN yum -y install php-fpm php-devel php-cli php-opcache php-gd php-xml \
 #	php-mbstring php-mcrypt php-mysql php-oci8 php-pdo php-pear php-xml php-xmlrpc \
 #	php-intl php-soap php-pgsql php-pecl-zip php-pecl-xdebug php-pecl-ssh2
 
 # Install PHP 7.2 and extensions
-RUN yum -y install php-fpm php-cli php-mysql
+RUN yum -y install php-fpm php-cli php-mysql php-xml
 
 #copy conf and basic web pages
 COPY ./conf/nginx.conf /etc/nginx/
